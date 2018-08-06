@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
 const ComponentUnavailable = () => (
@@ -11,7 +11,7 @@ const ComponentUnavailable = () => (
     </div>
 );
 
-class AsyncComponent extends React.PureComponent {
+class AsyncComponent extends PureComponent {
     constructor(props) {
         super(props);
 
@@ -21,16 +21,13 @@ class AsyncComponent extends React.PureComponent {
     }
 
     componentWillMount() {
-        const { Component } = this.state;
         const { componentProvider } = this.props;
-        if (!Component) {
-            componentProvider().then((result) => {
-                this.setState({ Component: result.default });
-            },
-            () => {
-                this.setState({ Component: ComponentUnavailable });
-            });
-        }
+        componentProvider().then((component) => {
+            this.setState({ Component: component.default });
+        },
+        () => {
+            this.setState({ Component: ComponentUnavailable });
+        });
     }
 
     render() {
