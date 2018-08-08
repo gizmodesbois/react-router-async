@@ -48,7 +48,9 @@ const config = {
   resolve: {
     extensions: ['.js', '.jsx'],
     alias: {
-      '@components': resolve(__dirname, 'app/components')
+      '@components': resolve(__dirname, 'app/components'),
+      '@containers': resolve(__dirname, 'app/containers'),
+      '@utils': resolve(__dirname, 'app/utils'),
     }
   },
 
