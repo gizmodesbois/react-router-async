@@ -7,7 +7,7 @@ import UnauthenticatedRoute from '@components/unauthenticated_route';
 import AuthenticatedRoute from '@components/authenticated_route';
 import routeList from './routes';
 
-const authenticated = true;
+const authenticated = false;
 
 const Root = () => (
     <Router>
